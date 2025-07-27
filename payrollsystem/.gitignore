@@ -1,0 +1,27 @@
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*.log
+
+# Virtual environment
+.venv/
+env/
+venv/
+ENV/
+
+# SQLite database
+db.sqlite3
+
+# VS Code settings
+.vscode/
+
+# Django static/media files
+/static/
+media/
+
+# Environment variables / secrets
+.env
+
+# Migrations (optional, if you want a clean repo)
+**/migrations/*.py
+!**/migrations/__init__.py
