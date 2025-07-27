@@ -1,0 +1,54 @@
+{% extends 'payroll_app/base.html' %}
+{% load static %}
+
+{% block title %}Employee List{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold"><i class="bi bi-people text-primary"></i> Employee Directory</h2>
+        <a href="{% url 'add_employee' %}" class="btn btn-outline-primary btn-sm">
+            <i class="bi bi-plus-circle"></i> Add New
+        </a>
+    </div>
+
+    {% if employees %}
+    <div class="table-responsive shadow-sm rounded">
+        <table class="table table-hover table-bordered align-middle bg-white">
+            <thead class="table-light">
+                <tr class="text-center">
+                    <th>Emp Code</th>
+                    <th>Name</th>
+                    <th>DOB</th>
+                    <th>Gender</th>
+                    <th>Designation</th>
+                    <th>TA</th>
+                    <th>Basic</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for emp in employees %}
+                <tr class="text-center">
+                    <td class="fw-medium">{{ emp.ECODE }}</td>
+                    <td>{{ emp.FNAME }} {{ emp.LNAME }}</td>
+                    <td>{{ emp.DOB }}</td>
+                    <td>{{ emp.GENDER }}</td>
+                    <td>{{ emp.DESIG }}</td>
+                    <td>₹{{ emp.TA }}</td>
+                    <td>₹{{ emp.BASIC }}</td>
+                    <td>{{ emp.EMAIL|default:"—" }}</td>
+                    <td>+91-{{ emp.MOB }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+        <div class="alert alert-warning mt-4 text-center" role="alert">
+            <i class="bi bi-exclamation-circle-fill"></i> No employees found. Please add some.
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
